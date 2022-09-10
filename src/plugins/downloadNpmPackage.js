@@ -42,7 +42,7 @@ function getDestination(action) {
 	return path.join("npm_packages", packageName, version);
 }
 
-export const downloadNpmPackagePlugin = createPlugin("donwloadNpmPackage", {
+export const downloadNpmPackagePlugin = createPlugin("downloadNpmPackage", {
 	/** @param {DownloadNpmPackageAction} action */
 	async checkCache(action) {
 		const exists = await isDirectory(getDestination(action));

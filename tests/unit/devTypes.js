@@ -8,7 +8,7 @@ import { createPlugin } from "../../src/types.js";
 dev({
 	actions: [
 		{
-			name: "downloadFile",
+			type: "downloadFile",
 			url: "",
 			destination: "",
 			// @ts-expect-error
@@ -16,7 +16,7 @@ dev({
 		},
 		{
 			// @ts-expect-error
-			name: "invalid name",
+			type: "invalid name",
 		},
 	],
 });
@@ -35,13 +35,13 @@ dev({
 	plugins: [customPlugin],
 	actions: [
 		{
-			name: "custom",
+			type: "custom",
 			foo: "",
 			bar: true,
 		},
 		// @ts-expect-error
 		{
-			name: "custom",
+			type: "custom",
 			foo: "",
 			// bar is deliberately missing
 		},
@@ -53,7 +53,7 @@ dev({
 	plugins: [],
 	actions: [
 		{
-			name: "downloadFile",
+			type: "downloadFile",
 			url: "",
 			destination: "",
 			// @ts-expect-error
@@ -61,7 +61,7 @@ dev({
 		},
 		{
 			// @ts-expect-error
-			name: "invalid name",
+			type: "invalid name",
 		},
 	],
 });

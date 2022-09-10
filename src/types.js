@@ -21,5 +21,5 @@ export function createPlugin(name, plugin) {
 
 /**
  * @template {DevPlugin<any>} TPlugin
- * @typedef {TPlugin extends any ? {name: TPlugin["name"]} & Parameters<TPlugin["run"]>[0] : never} PluginToAction
+ * @typedef {TPlugin extends any ? {type: TPlugin["name"]} & Parameters<TPlugin["run"]>[0] : never} PluginToAction
  */

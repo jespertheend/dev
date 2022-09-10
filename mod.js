@@ -30,13 +30,13 @@ export async function dev(options) {
 
 	for (const action of options.actions) {
 		const castAction = /** @type {import("./src/types.js").PluginToAction<any>} */ (action);
-		const plugin = plugins.get(castAction.name);
-		if (!plugin) throw new Error(`No plugin added for the action "${castAction.name}".`);
+		const plugin = plugins.get(castAction.type);
+		if (!plugin) throw new Error(`No plugin added for the action "${castAction.type}".`);
 
 		// We strip the name property from the action to make it match the type
 		// of the plugin functions.
 		const namelessAction = { ...castAction };
-		delete namelessAction.name;
+		delete namelessAction.type;
 
 		let needsRun = true;
 		if (plugin.checkCache) {

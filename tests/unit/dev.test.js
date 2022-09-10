@@ -21,7 +21,7 @@ Deno.test({
 			plugins: [customPlugin],
 			actions: [
 				{
-					name: "custom",
+					type: "custom",
 					foo: "foo",
 					bar: true,
 				},
@@ -54,7 +54,7 @@ Deno.test({
 			plugins: [customPlugin],
 			actions: [
 				{
-					name: "custom",
+					type: "custom",
 					foo: "foo",
 					bar: true,
 				},
@@ -87,7 +87,7 @@ Deno.test({
 			plugins: [customPlugin],
 			actions: [
 				{
-					name: "custom",
+					type: "custom",
 					foo: "foo",
 					bar: true,
 				},

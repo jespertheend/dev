@@ -4,7 +4,7 @@ import * as path from "https://deno.land/std@0.155.0/path/mod.ts";
 import { isDirectory, isFile } from "../../../src/util.js";
 
 Deno.test({
-	name: "Basic file download",
+	name: "Basic package download",
 	async fn() {
 		const tmpDir = await Deno.makeTempDir();
 
@@ -14,7 +14,7 @@ Deno.test({
 			await dev({
 				actions: [
 					{
-						name: "donwloadNpmPackage",
+						type: "downloadNpmPackage",
 						package: "rollup-plugin-resolve-url-objects@0.0.4",
 						downloadDependencies: true,
 					},
@@ -37,7 +37,7 @@ Deno.test({
 			await dev({
 				actions: [
 					{
-						name: "donwloadNpmPackage",
+						type: "downloadNpmPackage",
 						package: "rollup-plugin-resolve-url-objects@0.0.4",
 						downloadDependencies: true,
 					},

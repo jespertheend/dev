@@ -18,7 +18,7 @@ Deno.test({
 			await dev({
 				actions: [
 					{
-						name: "downloadFile",
+						type: "downloadFile",
 						url,
 						destination,
 					},
@@ -40,7 +40,7 @@ Deno.test({
 			await dev({
 				actions: [
 					{
-						name: "downloadFile",
+						type: "downloadFile",
 						url,
 						destination,
 					},
