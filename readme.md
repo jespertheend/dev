@@ -22,7 +22,7 @@ import { serveDir } from "https://deno.land/std/http/file_server.ts";
 await dev({
 	actions: [
 		{
-			name: "downloadFile",
+			type: "downloadFile",
 			url: "https://example.com/shim.js",
 			destination: "path/to/client/deps/shim.js",
 		},

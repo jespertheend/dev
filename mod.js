@@ -20,11 +20,11 @@ export async function dev(options) {
 	/** @type {Map<string, import("./src/types.js").DevPlugin<any>>} */
 	const plugins = new Map();
 	for (const plugin of defaultPlugins) {
-		plugins.set(plugin.name, plugin);
+		plugins.set(plugin.type, plugin);
 	}
 	if (options.plugins) {
 		for (const plugin of options.plugins) {
-			plugins.set(plugin.name, plugin);
+			plugins.set(plugin.type, plugin);
 		}
 	}
 
