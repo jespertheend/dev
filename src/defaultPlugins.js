@@ -1,7 +1,9 @@
 import { downloadFilePlugin } from "./plugins/downloadFile.js";
+import { downloadNpmPackagePlugin } from "./plugins/downloadNpmPackage.js";
 
 export const defaultPlugins = [
 	downloadFilePlugin,
+	downloadNpmPackagePlugin,
 ];
 
 /**
