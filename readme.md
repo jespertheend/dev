@@ -12,7 +12,7 @@ So instead, this module allows you to perform these steps inside the `dev.ts` sc
 at all times. To prevent these steps from being run every time you start `dev.ts`, the results are cached, and only if
 something is changed will steps be performed again.
 
-## Usage
+### Usage
 
 ```js
 import { dev } from "https://deno.land/x/dev/mod.js";
