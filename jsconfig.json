@@ -1,0 +1,14 @@
+{
+	"extends": "./.denoTypes/tsconfig.json",
+	"compilerOptions": {
+		"lib": ["dom", "dom.iterable", "ESNext"],
+		"strict": true,
+		"checkJs": true,
+		"useDefineForClassFields": true,
+		"target": "ESNext",
+		"module": "ESNext"
+	},
+	"include": [
+		"**/*.js"
+	]
+}
