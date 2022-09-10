@@ -33,20 +33,20 @@ export async function dev(options) {
 		const plugin = plugins.get(castAction.type);
 		if (!plugin) throw new Error(`No plugin added for the action "${castAction.type}".`);
 
-		// We strip the name property from the action to make it match the type
+		// We strip the type property from the action to make it match the type
 		// of the plugin functions.
-		const namelessAction = { ...castAction };
-		delete namelessAction.type;
+		const typelessAction = { ...castAction };
+		delete typelessAction.type;
 
 		let needsRun = true;
 		if (plugin.checkCache) {
-			const result = await plugin.checkCache(namelessAction);
+			const result = await plugin.checkCache(typelessAction);
 			if (!result) {
 				needsRun = false;
 			}
 		}
 		if (needsRun) {
-			await plugin.run(namelessAction);
+			await plugin.run(typelessAction);
 		}
 	}
 }
