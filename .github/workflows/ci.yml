@@ -1,0 +1,32 @@
+# This workflow will run all checks required for a PR to be merged.
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v2
+
+      - name: Setup Deno
+        # For more information see: https://github.com/denoland/setup-deno
+        uses: denoland/setup-deno@004814556e37c54a2f6e31384c9e18e983317366
+        with:
+          deno-version: "1.25.2"
+
+      - name: Initialize project
+        run: deno task dev
+
+      - name: fmt
+        run: deno fmt
+
+      - name: test
+        run: deno task test
