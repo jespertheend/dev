@@ -5,7 +5,7 @@
 	"fmt": {
 		"options": {
 			"useTabs": true,
-			"lineWidth": 300
+			"lineWidth": 120
 		},
 		"files": {
 			"exclude": [".denoTypes"]
