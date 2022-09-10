@@ -52,6 +52,7 @@ Deno.test({
 			const fileText2 = await Deno.readTextFile(filePath);
 			assertEquals(fileText2, "new content");
 		} finally {
+			Deno.chdir(".."); // https://github.com/denoland/deno/issues/15849
 			await Deno.remove(tmpDir, { recursive: true });
 			fetchSpy.restore();
 		}
