@@ -1,11 +1,6 @@
 import { defaultPlugins } from "./src/defaultPlugins.js";
 
 /**
- * @typedef Action
- * @property {string} action
- */
-
-/**
  * @template {import("./src/types.js").DevPlugin<any>} [TPlugins = never]
  * @typedef DevOptions
  * @property {TPlugins[]} [plugins]
@@ -30,6 +25,7 @@ export async function dev(options) {
 
 	for (const action of options.actions) {
 		const castAction = /** @type {import("./src/types.js").PluginToAction<any>} */ (action);
+		if (castAction.ignore) continue;
 		const plugin = plugins.get(castAction.type);
 		if (!plugin) throw new Error(`No plugin added for the action "${castAction.type}".`);
 
@@ -37,6 +33,7 @@ export async function dev(options) {
 		// of the plugin functions.
 		const typelessAction = { ...castAction };
 		delete typelessAction.type;
+		delete typelessAction.ignore;
 
 		let needsRun = true;
 		if (plugin.checkCache) {
