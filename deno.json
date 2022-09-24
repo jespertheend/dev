@@ -1,7 +1,7 @@
 {
 	"tasks": {
 		"dev": "deno run --allow-read --allow-write --allow-env --allow-run --allow-net scripts/dev.js",
-		"test": "deno test --allow-read --allow-write --allow-net=registry.npmjs.org"
+		"test": "deno test --allow-read --allow-write --allow-env --allow-net=registry.npmjs.org"
 	},
 	"fmt": {
 		"options": {
