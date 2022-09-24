@@ -6,4 +6,6 @@ import { generateTypes } from "https://raw.githubusercontent.com/jespertheend/de
 import { setCwd } from "https://deno.land/x/chdir_anywhere@v0.0.2/mod.js";
 setCwd();
 Deno.chdir("..");
-await generateTypes();
+await generateTypes({
+	excludeUrls: ["https://esm.sh/@rollup/plugin-commonjs@11.1.0?pin=v64"],
+});
