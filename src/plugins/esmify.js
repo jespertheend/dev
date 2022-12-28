@@ -1,7 +1,7 @@
 import { createPlugin } from "../types.js";
-import * as rollup from "https://esm.sh/rollup@2.61.1?pin=v64";
-import commonjs from "https://esm.sh/@rollup/plugin-commonjs@11.1.0?pin=v64";
-import { nodeResolve } from "https://esm.sh/@rollup/plugin-node-resolve@13.0.6?pin=v64";
+import * as rollup from "npm:rollup@2.79.1";
+import commonjs from "npm:@rollup/plugin-commonjs@22.0.2";
+import { nodeResolve } from "npm:@rollup/plugin-node-resolve@14.1.0";
 import { isFile } from "../util.js";
 
 /**

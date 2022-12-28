@@ -2,10 +2,8 @@
  * @fileoverview Generates types that are required for deno task check to pass.
  */
 
-import { generateTypes } from "https://raw.githubusercontent.com/jespertheend/deno-tsc-helper/f91c4cd1c399b1012fef9389fdba60e52f8ea41b/mod.js";
+import { generateTypes } from "https://deno.land/x/deno_tsc_helper@v0.2.1/mod.js";
 import { setCwd } from "https://deno.land/x/chdir_anywhere@v0.0.2/mod.js";
 setCwd();
 Deno.chdir("..");
-await generateTypes({
-	excludeUrls: ["https://esm.sh/@rollup/plugin-commonjs@11.1.0?pin=v64"],
-});
+await generateTypes();
