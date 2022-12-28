@@ -1,7 +1,7 @@
 import * as path from "https://deno.land/std@0.155.0/path/mod.ts";
 import { createPlugin } from "../types.js";
 import { isDirectory } from "../util.js";
-import { downloadNpmPackage } from "https://deno.land/x/npm_fetcher@v0.0.2/mod.ts";
+import { downloadNpmPackage, splitNameAndVersion } from "https://deno.land/x/npm_fetcher@v0.0.4/mod.ts";
 
 /**
  * @typedef DownloadNpmPackageAction
@@ -17,28 +17,11 @@ import { downloadNpmPackage } from "https://deno.land/x/npm_fetcher@v0.0.2/mod.t
  */
 
 /**
- * @param {string} nameAndVersion
- */
-function parsePackageName(nameAndVersion) {
-	const splitPackage = nameAndVersion.split("@");
-	if (splitPackage.length == 1) {
-		throw new Error(
-			`Failed to get package ${nameAndVersion}, package contains no version. If you wish to use the latest version, you can use ${nameAndVersion}@latest, although this is not recommended.`,
-		);
-	}
-	const version = splitPackage.pop();
-	if (!version) throw new Error("Failed to get package version.");
-	const packageName = splitPackage.join("@");
-	if (!packageName) throw new Error("Failed to get package name.");
-	return { version, packageName };
-}
-
-/**
  * @param {DownloadNpmPackageAction} action
  */
 function getDestination(action) {
 	if (action.destination) return action.destination;
-	const { version, packageName } = parsePackageName(action.package);
+	const { version, packageName } = splitNameAndVersion(action.package);
 	return path.join("npm_packages", packageName, version);
 }
 
@@ -51,7 +34,7 @@ export const downloadNpmPackagePlugin = createPlugin("downloadNpmPackage", {
 	/** @param {DownloadNpmPackageAction} action */
 	async run(action) {
 		const destination = getDestination(action);
-		const { version, packageName } = parsePackageName(action.package);
+		const { version, packageName } = splitNameAndVersion(action.package);
 		await downloadNpmPackage({
 			packageName,
 			version,
