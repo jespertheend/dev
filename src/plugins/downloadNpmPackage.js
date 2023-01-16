@@ -1,7 +1,7 @@
 import * as path from "https://deno.land/std@0.155.0/path/mod.ts";
 import { createPlugin } from "../types.js";
 import { isDirectory } from "../util.js";
-import { downloadNpmPackage, splitNameAndVersion } from "https://deno.land/x/npm_fetcher@v0.0.4/mod.ts";
+import { downloadNpmPackage, splitNameAndVersion } from "https://deno.land/x/npm_fetcher@v0.1.0/mod.ts";
 
 /**
  * @typedef DownloadNpmPackageAction

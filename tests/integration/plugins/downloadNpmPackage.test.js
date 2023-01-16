@@ -51,3 +51,31 @@ Deno.test({
 		}
 	},
 });
+
+Deno.test({
+	name: "Download types package",
+	async fn() {
+		const tmpDir = await Deno.makeTempDir();
+
+		try {
+			Deno.chdir(tmpDir);
+
+			await dev({
+				actions: [
+					{
+						type: "downloadNpmPackage",
+						package: "@types/three@0.148.0",
+					},
+				],
+			});
+
+			const packageJsonPath = path.resolve(tmpDir, "npm_packages/@types/three/0.148.0/three/package.json");
+			const packageJsonStr = await Deno.readTextFile(packageJsonPath);
+			const packageJson = JSON.parse(packageJsonStr);
+			assertEquals(packageJson.name, "@types/three");
+		} finally {
+			Deno.chdir(".."); // https://github.com/denoland/deno/issues/15849
+			await Deno.remove(tmpDir, { recursive: true });
+		}
+	},
+});
