@@ -1,11 +1,13 @@
 import { downloadFilePlugin } from "./plugins/downloadFile.js";
 import { downloadNpmPackagePlugin } from "./plugins/downloadNpmPackage.js";
 import { esmifyPlugin } from "./plugins/esmify.js";
+import { addTsNocheckPlugin } from "./plugins/tsNocheck.js";
 
 export const defaultPlugins = [
 	downloadFilePlugin,
 	downloadNpmPackagePlugin,
 	esmifyPlugin,
+	addTsNocheckPlugin,
 ];
 
 /**
