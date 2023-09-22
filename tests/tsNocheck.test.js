@@ -1,5 +1,5 @@
-import { dev } from "../../../mod.js";
 import { assertEquals } from "https://deno.land/std@0.155.0/testing/asserts.ts";
+import { addTsNocheck } from "../src/tsNocheck.js";
 
 /**
  * @param {Object} options
@@ -27,13 +27,8 @@ Deno.test({
 				await Deno.mkdir("dir");
 				await Deno.writeTextFile("dir/c.js", "hello");
 				await Deno.writeTextFile("dir/d.ts", "hello");
-				await dev({
-					actions: [
-						{
-							type: "addTsNocheck",
-							path: tmpDir,
-						},
-					],
+				await addTsNocheck({
+					path: tmpDir,
 				});
 
 				const contentA = await Deno.readTextFile("a.js");
@@ -56,14 +51,9 @@ Deno.test({
 			async fn(tmpDir) {
 				await Deno.writeTextFile("a.js", "hello");
 				await Deno.writeTextFile("b.ts", "hello");
-				await dev({
-					actions: [
-						{
-							type: "addTsNocheck",
-							path: tmpDir,
-							excludeJs: true,
-						},
-					],
+				await addTsNocheck({
+					path: tmpDir,
+					excludeJs: true,
 				});
 				const contentA = await Deno.readTextFile("a.js");
 				assertEquals(contentA, "hello");
@@ -81,14 +71,9 @@ Deno.test({
 			async fn(tmpDir) {
 				await Deno.writeTextFile("a.js", "hello");
 				await Deno.writeTextFile("b.ts", "hello");
-				await dev({
-					actions: [
-						{
-							type: "addTsNocheck",
-							path: tmpDir,
-							excludeTs: true,
-						},
-					],
+				await addTsNocheck({
+					path: tmpDir,
+					excludeTs: true,
 				});
 				const contentA = await Deno.readTextFile("a.js");
 				assertEquals(contentA, "// @ts-nocheck\n\nhello");
@@ -108,13 +93,8 @@ Deno.test({
 				await Deno.writeTextFile("fileB.js", "prefix // @ts-nocheck");
 				await Deno.writeTextFile("fileC.js", "prefix\n// @ts-nocheck");
 
-				await dev({
-					actions: [
-						{
-							type: "addTsNocheck",
-							path: tmpDir,
-						},
-					],
+				await addTsNocheck({
+					path: tmpDir,
 				});
 
 				assertEquals(await Deno.readTextFile("fileA.js"), "// @ts-nocheck");
