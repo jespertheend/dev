@@ -15,23 +15,29 @@ something is changed will steps be performed again.
 ### Usage
 
 ```js
+import { downloadFile, downloadNpmPackage, vendor } from "https://deno.land/x/dev@v0.4.0/mod.js";
 import { dev } from "https://deno.land/x/dev/mod.js";
 import { serve } from "https://deno.land/std/http/server.ts";
 import { serveDir } from "https://deno.land/std/http/file_server.ts";
 
-await dev({
-	actions: [
-		{
-			type: "downloadFile",
-			url: "https://example.com/shim.js",
-			destination: "path/to/client/deps/shim.js",
-		},
+await downloadFile({
+	url: "https://example.com/shim.js",
+	destination: "path/to/frontend/deps/shim.js",
+});
+await downloadNpmPackage({
+	package: "package-name@1.2.3",
+	destination: "path/to/backend/deps/package-name/1.2.3",
+});
+await vendor({
+	outDir: "path/to/backend/deps/vendor/",
+	entryPoints: [
+		"https://example.com/someLibrary.js",
 	],
 });
 
 serve((req) => {
 	return serveDir(req, {
-		fsRoot: "path/to/client",
+		fsRoot: "path/to/frontend",
 	});
 });
 ```
